@@ -15,7 +15,7 @@ export class UsersService {
   ) { }
 
   async create(createUserDto: CreateUserDto) {
-    const { email, password } = createUserDto;
+    const { email, password, empresa } = createUserDto;
 
     const existingUser = await this.usersRepository.findOneBy({ email: email });
     if (existingUser) {
@@ -28,6 +28,7 @@ export class UsersService {
     const newUser = this.usersRepository.create({
       email: email,
       password: hashedPassword,
+      empresa: empresa
     });
 
     await this.usersRepository.save(newUser);
@@ -36,13 +37,13 @@ export class UsersService {
     return newUser;
   }
 
-  findAll() {
-    return `This action returns all users`;
-  }
+  // findAll() {
+  //   return `This action returns all users`;
+  // }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
-  }
+  // findOne(id: number) {
+  //   return `This action returns a #${id} user`;
+  // }
 
   async findOneByEmail(email: string): Promise<User | undefined> {
     return this.usersRepository
@@ -52,11 +53,11 @@ export class UsersService {
       .getOne();
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
+  // update(id: number, updateUserDto: UpdateUserDto) {
+  //   return `This action updates a #${id} user`;
+  // }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
-  }
+  // remove(id: number) {
+  //   return `This action removes a #${id} user`;
+  // }
 }
