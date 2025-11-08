@@ -11,7 +11,7 @@ export class Poliza {
   @Column({ type: 'date' })
   fecha: Date;
 
-  @Column({ type: 'varchar', length: 45 })
+  @Column({ type: 'varchar', length: 200 })
   concepto: string;
 
   // Relaciones

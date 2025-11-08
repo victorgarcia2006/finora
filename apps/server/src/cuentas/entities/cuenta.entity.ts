@@ -3,6 +3,7 @@ import { TipoCuenta } from "../enums/tipo-cuenta.enum";
 import { NaturalezaCuenta } from "../enums/naturaleza-cuenta.enum";
 import { User } from "src/users/entities/user.entity";
 import { Movimiento } from "src/movimientos/entities/movimiento.entity";
+import { ClasificacionCuenta } from "../enums/clasificacion-cuenta.enum";
 
 
 @Entity('cuenta')
@@ -21,6 +22,9 @@ export class Cuenta {
 
   @Column({ type: 'enum', enum: NaturalezaCuenta })
   naturaleza: NaturalezaCuenta;
+
+  @Column({ type: 'enum', enum: ClasificacionCuenta })
+  clasificacion: ClasificacionCuenta;
 
   // Relaciones
   @OneToMany(() => Movimiento, (movimiento) => movimiento.cuenta)
