@@ -16,5 +16,8 @@ export const getProfile = async () => {
 
 export const register = async (userData: any) => {
   const { data } = await axios.post('/auth/register', userData);
+
+  localStorage.setItem('token', data.access_token);
+
   return data;
 };
