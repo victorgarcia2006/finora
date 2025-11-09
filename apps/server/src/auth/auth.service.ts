@@ -31,6 +31,7 @@ export class AuthService {
 
     async register(createUserDto: CreateUserDto) {
     try {
+      console.log(createUserDto);
       const newUser = await this.usersService.create(createUserDto);
 
       return this.login(newUser);
