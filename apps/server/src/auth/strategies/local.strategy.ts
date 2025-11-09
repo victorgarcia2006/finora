@@ -22,6 +22,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     }
     
     console.log('LocalStrategy: ¡Usuario válido!');
+    console.log(user);
     return user;
   }
 }
