@@ -11,24 +11,24 @@ export class ReportesController {
   constructor(private readonly reportesService: ReportesService) { }
 
   @Post('balance-general')
-  generarBalanceGeneral(
+  async generarBalanceGeneral(
     @Body() generarReporteDto: GenerarReporteDto,
     @Req() req: RequestWithUser,
   ) {
     const usuarioId = req.user.userId;
-    return this.reportesService.generarBalanceGeneral(
+    return await this.reportesService.generarBalanceGeneral(
       usuarioId,
       generarReporteDto,
     );
   }
 
   @Post('estado-resultados')
-  generarEstadoResultados(
+  async generarEstadoResultados(
     @Body() generarReporteDto: GenerarReporteDto,
     @Req() req: RequestWithUser,
   ) {
     const usuarioId = req.user.userId;
-    return this.reportesService.generarEstadoResultados(
+    return await this.reportesService.generarEstadoResultados(
       usuarioId,
       generarReporteDto,
     );
