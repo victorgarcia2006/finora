@@ -1,4 +1,7 @@
 {
+  "files": [
+    "src/types/express.d.ts"
+  ],
   "compilerOptions": {
     "module": "commonjs",
     "declaration": true,
@@ -16,6 +19,15 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
-  }
+    "noFallthroughCasesInSwitch": false,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+    ]
+  },
+  // --- ¡ESTA LÍNEA TAMBIÉN ES VITAL! ---
+  // Le dice a TS qué carpeta debe compilar
+  "include": [
+    "src/**/*"
+  ]
 }
