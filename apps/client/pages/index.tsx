@@ -3,7 +3,15 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { getProfile } from "./api/auth";
 import Head from "next/head";
-import { Card, Button, Modal, Input, NumberInput, Select } from "@mantine/core";
+import {
+  Card,
+  Button,
+  Modal,
+  Input,
+  NumberInput,
+  Select,
+  ScrollArea,
+} from "@mantine/core";
 import { getAllPolizas, createPoliza } from "./api/polizas";
 import { getCuentas } from "./api/cuentas";
 import { IconChevronRight, IconPlus } from "@tabler/icons-react";
@@ -94,9 +102,10 @@ export default function Home() {
       });
     });
     getAllReportes().then((reportes) => {
+      console.log(reportes)
       setReportes(reportes);
     });
-  }, [router, getAllPolizas, getAllReportes, polizas, reportes]);
+  }, [router, getAllPolizas, getAllReportes/* , polizas, reportes */]);
 
   const onSubmit = async (data: any) => {
     try {
@@ -145,40 +154,46 @@ export default function Home() {
                 Agregar
               </Button>
             </div>
-            {polizas.length > 0 ? (
-              polizas.map((poliza) => (
-                <Card
-                  key={poliza.idPoliza}
-                  withBorder
-                  padding="lg"
-                  radius="lg"
-                  bg="#2F363D"
-                >
-                  <div className="flex justify-between items-center">
-                    <div className="flex flex-col gap-2">
-                      <h2 className="text-xl font-bold text-white">
-                        {poliza.concepto}
-                      </h2>
-                      <p className="text-[#AAB2BD] min-w-24">{poliza.fecha}</p>
-                    </div>
-                    <div className="min-w-24">
-                      <Button
-                        variant="outline"
-                        color="#1F4E79"
-                        leftSection={<IconChevronRight />}
-                        onClick={() =>
-                          router.push(`/poliza/${poliza.idPoliza}`)
-                        }
-                      >
-                        Ver
-                      </Button>
-                    </div>
-                  </div>
-                </Card>
-              ))
-            ) : (
-              <p className="text-white">No hay movimientos</p>
-            )}
+            <ScrollArea h="600px">
+              <div className="flex flex-col gap-5">
+                {polizas.length > 0 ? (
+                  polizas.map((poliza) => (
+                    <Card
+                      key={poliza.idPoliza}
+                      withBorder
+                      padding="lg"
+                      radius="lg"
+                      bg="#2F363D"
+                    >
+                      <div className="flex justify-between items-center">
+                        <div className="flex flex-col gap-2">
+                          <h2 className="text-xl font-bold text-white">
+                            {poliza.concepto}
+                          </h2>
+                          <p className="text-[#AAB2BD] min-w-24">
+                            {poliza.fecha}
+                          </p>
+                        </div>
+                        <div className="min-w-24">
+                          <Button
+                            variant="outline"
+                            color="#1F4E79"
+                            leftSection={<IconChevronRight />}
+                            onClick={() =>
+                              router.push(`/poliza/${poliza.idPoliza}`)
+                            }
+                          >
+                            Ver
+                          </Button>
+                        </div>
+                      </div>
+                    </Card>
+                  ))
+                ) : (
+                  <p className="text-white">No hay movimientos</p>
+                )}
+              </div>
+            </ScrollArea>
           </Card>
           <Modal
             opened={opened}
@@ -368,7 +383,7 @@ export default function Home() {
                         color="#1F4E79"
                         leftSection={<IconChevronRight />}
                         onClick={() =>
-                          router.push(`/reporte/${reporte.idReporte}`)
+                          router.push(`/reportes/${reporte.idReporte}`)
                         }
                       >
                         Ver
