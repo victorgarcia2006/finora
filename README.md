@@ -35,12 +35,12 @@ It provides tools to:
 - Interactive dashboards
 
 ### Backend
-- API development (REST / GraphQL)
+- API development (REST)
 - Business logic for financial calculations
 - Data processing and report generation
 
 ### Database
-- Relational database for structured financial data
+- Relational database (MySQL)
 
 ---
 
